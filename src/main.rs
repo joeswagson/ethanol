@@ -114,11 +114,11 @@ fn main() {
 
     // let check_mem = args.contains("--no-memory-check");
     let mem = proc.memory();
-    print!("Process memory in bytes: {}", mem);
+    println!("Process memory in bytes: {}", mem);
     if(mem < MIN_MEM * U_BYTES){
         println!("Process uses a suspiciously low amount of memory, probably made incorrect assumption. Run with the '--no-memory-check' flag to disable this if you have verified the process.");
         return;
     }
 
-    print!("Process passed memory check!");
+    println!("Process passed memory check!");
 }

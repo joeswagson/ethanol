@@ -1,0 +1,27 @@
+use sysinfo::{System, Pid};
+
+fn main() {
+    let sys = System::new_all();
+    sys.refresh_all();
+
+    // Log the module name for each process that meets our criteria
+    for (pid, proc) in sys.processes() {
+        // Only consider processes whose executable name ends with "sober"
+        let exe_name = proc.exe_name();
+        if exe_name.ends_with("sober") {
+            // Skip if access is denied
+            if let Err(_) = proc.exe() {
+                continue;
+            }
+            // Print the module name along with pid and process name
+            println!(
+                "Process {} ({}): {:?}",
+                pid,
+                proc.module_name().unwrap_or("unknown").to_string(),
+                proc.name()
+            );
+        }
+    }
+
+    println!("Searching for processes");
+}

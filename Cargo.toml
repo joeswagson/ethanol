@@ -1,0 +1,8 @@
+[package]
+name = "ethanol"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+process_list = "0.2.1"
+sysinfo = "0.38.2"
